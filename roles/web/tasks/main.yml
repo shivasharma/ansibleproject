@@ -1,0 +1,24 @@
+---
+  - name : IIS Web Server Started
+    win_feature:
+      name: Web-server
+      state: present
+  
+  - name : Http Tracing is installed
+    win_feature:
+      name: Web-Http-Tracing
+      state: present
+    when: debug_tools
+
+  - name : Index page is deployed
+    win_template:
+      src: index.html.j2
+      dest: C:\intepub\wwwroot\index.html
+
+  - name : Info page is deployed
+    win_feature:
+      src: info.html
+      dest: C:\intepub\wwwroot\info.html
+         
+      
+      
