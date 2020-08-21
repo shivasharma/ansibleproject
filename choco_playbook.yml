@@ -1,0 +1,15 @@
+---
+- hosts: webservers
+  gather_facts: no
+  tasks :
+  - name: "Install Firefox"
+    win_chocolatey:
+      name: firefox
+      state: present
+
+  - name: "Install Firefox"
+    win_chocolatey:
+      name: notepadplusplus
+      state: present
+
+

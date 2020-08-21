@@ -1,0 +1,16 @@
+---
+- hosts: windows_servers
+  tasks:
+# Unzip .zip file, recursively decompresses the contained .gz files and removes all unneeded compressed files after completion.
+- name: Unzip ApplicationLogs.zip and decompress all GZipped log files
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Recursively decompress GZ files in ApplicationLogs.zip
+      win_unzip:
+        src: C:\ApplicationLogs.zip
+        dest: C:\ApplicationLogs
+        recurse: no
+        delete_archive: no
+
+  

@@ -1,0 +1,47 @@
+---
+- hosts: webservers
+  gather_facts: yes
+  vars:
+    globomantics_site_path: "c:\\inetpub\\wwwroot\\globosite"
+    default_index_file: 'index.html'
+
+  tasks:
+  
+
+    - name: Ensure that IIS is installed
+      win_feature:
+        name: 'Web-server'
+        state: present
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+
+
+    - name: Ensure the globomantics website directory is created
+      win_file:
+        path: '{{globomantics_site_path}}'
+        state: directory
+
+    - name: Create sub directories
+      win_iis_website:
+        name: 'Globomantic Application'
+        state: started
+        port: 8080
+        physical_path: '{{globomantics_site_path}}'
+
+    - name: Copy defualt index file to site
+      win_copy:
+        src: '{{ default_index_file}}'
+        dest: "{{globomantics_site_path}}\\index.html"
+
+    - name: Ensiure firewall rule is in place for site
+      win_firewall_rule:
+        name: Globomatics
+        enabled: yes
+        state: present
+        localport: '8080'
+        action: allow
+        direction: in
+        protocol: tcp
+
+  

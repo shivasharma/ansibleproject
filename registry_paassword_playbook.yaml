@@ -1,0 +1,20 @@
+---
+ 
+- hosts: windows_servers
+  vars:
+     dbuserdata: ""
+     dbpwddata: ""
+  tasks:
+
+  - name: Create Registry Entry User DBConnect
+    win_regedit:
+      path: HKLM:\SOFTWARE\DOS\DBConnect
+      name: User
+      data: '{{dbuserdata}}'
+
+  - name: Create Registry Entry Password DBConnect
+    win_regedit:
+      path: HKLM:\SOFTWARE\DOS\DBConnect
+      name: Pwd
+      data: '{{dbpwddata}}'
+  
