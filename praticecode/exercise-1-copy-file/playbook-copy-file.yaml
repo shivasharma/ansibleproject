@@ -1,0 +1,9 @@
+---
+- hosts: webserver_linux
+  gather_facts: no
+  tasks:
+    - name: 'Copy file to target server'
+      copy:
+        src: /home/shiva/tmp/text.txt
+        dest: /home/shiva/Desktop/linuxlearning
+     

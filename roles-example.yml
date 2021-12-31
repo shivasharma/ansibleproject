@@ -16,5 +16,5 @@
    post_tasks:
         - name : Custom page is added
           win_copy:
-            content : "Hello"
+            content : "Hello shiva "
             dest: C:\Inetpub\wwwroot\example.html
