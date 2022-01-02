@@ -1,0 +1,8 @@
+---
+- name: A sample playbook
+  hosts: windows-server
+  tasks:
+    - name: A simple task 
+      win_service:
+        name: spoller
+        state: started
