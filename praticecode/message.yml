@@ -1,0 +1,10 @@
+---
+- name: A sample playbook
+  hosts: linux
+  tasks:
+  - name: A simple task 
+    debug:
+     msg:
+     - "Message1"
+     - "Message2" 
+
